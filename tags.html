@@ -1,0 +1,16 @@
+---
+layout: default
+title: Tags
+permalink: /tags/
+blog_sidebar: true
+---
+<h1 class="page-title">Posts by tag</h1>
+{% assign tags = site.tags | sort %}
+{% for t in tags %}
+<section class="index-group" id="{{ t[0] | slugify }}">
+  <h2>{{ t[0] }} <span class="count">{{ t[1].size }}</span></h2>
+  <ul>
+    {% for p in t[1] %}<li><a href="{{ p.url | relative_url }}">{{ p.title }}</a> <time>{{ p.date | date: "%-d %b %Y" }}</time></li>{% endfor %}
+  </ul>
+</section>
+{% endfor %}

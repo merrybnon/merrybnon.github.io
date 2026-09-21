@@ -1,0 +1,33 @@
+<div class="blog-rail">
+  <section>
+    <h2>Categories</h2>
+    <ul class="cat-list">
+      {% assign cats = site.categories | sort %}
+      {% for c in cats %}
+        <li><a href="{{ '/categories/' | relative_url }}#{{ c[0] | slugify }}">{{ c[0] }}</a> <span class="count">{{ c[1].size }}</span></li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Tags</h2>
+    {% assign max = 1 %}
+    {% for t in site.tags %}{% if t[1].size > max %}{% assign max = t[1].size %}{% endif %}{% endfor %}
+    <p class="tag-cloud">
+      {% assign tags = site.tags | sort %}
+      {% for t in tags %}
+        {% assign w = t[1].size | times: 100 | divided_by: max %}
+        <a href="{{ '/tags/' | relative_url }}#{{ t[0] | slugify }}" style="--w:{{ w }}">{{ t[0] }}</a>
+      {% endfor %}
+    </p>
+  </section>
+
+  <section>
+    <h2>Recent posts</h2>
+    <ul class="recent">
+      {% for p in site.posts limit:5 %}
+        <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+</div>

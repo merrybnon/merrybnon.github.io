@@ -1,0 +1,16 @@
+---
+layout: default
+title: Categories
+permalink: /categories/
+blog_sidebar: true
+---
+<h1 class="page-title">Posts by category</h1>
+{% assign cats = site.categories | sort %}
+{% for c in cats %}
+<section class="index-group" id="{{ c[0] | slugify }}">
+  <h2>{{ c[0] }} <span class="count">{{ c[1].size }}</span></h2>
+  <ul>
+    {% for p in c[1] %}<li><a href="{{ p.url | relative_url }}">{{ p.title }}</a> <time>{{ p.date | date: "%-d %b %Y" }}</time></li>{% endfor %}
+  </ul>
+</section>
+{% endfor %}

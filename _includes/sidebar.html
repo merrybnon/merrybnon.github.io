@@ -1,0 +1,32 @@
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-top">
+    <a class="identity" href="{{ '/' | relative_url }}">
+      <img class="avatar" src="{{ site.avatar | relative_url }}" alt="">
+      <span class="name">{{ site.author }}</span>
+    </a>
+    <button class="menu-toggle" aria-controls="sidebar-body" aria-expanded="false">Menu</button>
+  </div>
+
+  <div class="sidebar-body" id="sidebar-body">
+    <p class="tagline">{{ site.tagline }}</p>
+
+    <nav class="primary-nav" aria-label="Site">
+      {% assign home = '/' | relative_url %}
+      <a href="{{ home }}#about">About</a>
+      <a href="{{ home }}#research">Research</a>
+      <a href="{{ '/blog/' | relative_url }}" {% if page.layout == 'post' or page.url contains '/blog/' %}aria-current="page"{% endif %}>Blog</a>
+      <a href="{{ home }}#contact">Contact</a>
+      {% if site.cv %}<a href="{{ site.cv | relative_url }}">CV (PDF)</a>{% endif %}
+    </nav>
+
+    {% if page.blog_sidebar or page.layout == 'post' %}
+      {% include blog-sidebar.html %}
+    {% endif %}
+
+    <div class="sidebar-foot">
+      <a href="https://github.com/{{ site.github_username }}">GitHub</a>
+      <a href="mailto:{{ site.email }}">Email</a>
+      <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+    </div>
+  </div>
+</aside>

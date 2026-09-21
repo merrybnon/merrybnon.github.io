@@ -1,0 +1,20 @@
+---
+layout: default
+title: Blog
+blog_sidebar: true
+---
+<header class="blog-head">
+  <h1 class="page-title">Blog</h1>
+  <p class="lede">{{ site.description }}</p>
+</header>
+
+<ol class="post-list">
+{% for p in site.posts %}
+  <li class="post-item">
+    <h2><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h2>
+    {% include post-meta.html post=p %}
+    <div class="excerpt prose">{{ p.excerpt }}</div>
+    {% if p.content contains site.excerpt_separator %}<p class="more"><a href="{{ p.url | relative_url }}">Continue reading</a></p>{% endif %}
+  </li>
+{% endfor %}
+</ol>

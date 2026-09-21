@@ -1,0 +1,14 @@
+{% assign p = include.post %}
+<p class="post-meta">
+  <time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%-d %B %Y" }}</time>
+  {% if p.categories.size > 0 %}
+    <span class="in">in
+      {% for c in p.categories %}<a href="{{ '/categories/' | relative_url }}#{{ c | slugify }}">{{ c }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}
+    </span>
+  {% endif %}
+</p>
+{% if p.tags.size > 0 %}
+<ul class="tags" aria-label="Tags">
+  {% for t in p.tags %}<li><a href="{{ '/tags/' | relative_url }}#{{ t | slugify }}">{{ t }}</a></li>{% endfor %}
+</ul>
+{% endif %}

@@ -1,0 +1,44 @@
+# ---------------------------------------------------------------
+# Site settings — edit these first
+# ---------------------------------------------------------------
+title: Hudson
+author: Hudson                       # TODO: your full name
+tagline: Physics PhD student, University of Oregon
+description: Notes, derivations, and research updates.
+email: you@uoregon.edu               # TODO
+github_username: merrybnon
+cv: /assets/cv.pdf                   # drop a PDF here, or delete this line
+avatar: /assets/img/avatar.svg       # replace with a photo, e.g. /assets/img/me.jpg
+
+url: "https://merrybnon.github.io"   # TODO if you use a different repo name
+baseurl: ""                          # "" for a <username>.github.io repo; "/repo-name" otherwise
+
+# ---------------------------------------------------------------
+# Comments (giscus — stored as GitHub Discussions on this repo)
+# Fill these in from https://giscus.app, then set enabled: true
+# ---------------------------------------------------------------
+giscus:
+  enabled: false
+  repo: merrybnon/merrybnon.github.io
+  repo_id: ""        # from giscus.app
+  category: Comments
+  category_id: ""    # from giscus.app
+
+# ---------------------------------------------------------------
+# Build — you shouldn't need to touch these
+# ---------------------------------------------------------------
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax   # emits \( \) and \[ \]; KaTeX renders them in the browser
+  syntax_highlighter: rouge
+permalink: /:year/:month/:day/:title/
+excerpt_separator: "<!--more-->"
+plugins:
+  - jekyll-feed
+exclude: [README.md, Gemfile, Gemfile.lock, vendor]
+defaults:
+  - scope: { path: "", type: posts }
+    values: { layout: post, comments: true }
+  - scope: { path: "" }
+    values: { layout: page }
