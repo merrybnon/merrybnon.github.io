@@ -72,8 +72,7 @@ img { max-width: 100%; height: auto; }
 .sidebar a { color: var(--side-text); text-decoration: none; }
 .sidebar a:hover { color: #fff; }
 .identity { display: block; }
-.avatar { width: 7rem; height: 7rem; border-radius: 50%; object-fit: cover;
-  object-position: 50% 25%; display: block;
+.avatar { width: 7rem; height: 7rem; border-radius: 50%; object-fit: cover; display: block;
   border: 3px solid rgba(255,255,255,.08); }
 .name { display: block; margin-top: 1.1rem; font: 600 2rem/1.1 var(--serif); letter-spacing: -0.01em; color: #fff; }
 .tagline { color: var(--side-muted); margin: .4rem 0 2rem; }

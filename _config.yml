@@ -8,7 +8,7 @@ description: Research, and also sometimes, not research
 email: hlazzara@uoregon.edu
 github_username: merrybnon
 cv: /assets/cv.pdf                   # drop a PDF here, or delete this line
-avatar: /assets/img/top_of_yushan_pic.jpg
+avatar: /assets/img/avatar.jpg
 
 url: "https://merrybnon.github.io"   # TODO if you use a different repo name
 baseurl: ""                          # "" for a <username>.github.io repo; "/repo-name" otherwise
