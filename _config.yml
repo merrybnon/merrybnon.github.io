@@ -18,7 +18,7 @@ blog_title: Quiet Conversation         # the big name on the blog banner
 blog_subtitle: aka The Dao That Can Be Named
 description: Research, and also sometimes, not research
 paginate: 8                           # posts per page on the blog home
-paginate_path: /blog/page:num/
+paginate_path: /qc/page:num/
 
 url: "https://merrybnon.github.io"
 baseurl: ""

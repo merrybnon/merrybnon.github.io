@@ -260,8 +260,8 @@ body.home.panel-open .home-footer { display: none; }
 .blog-footer { max-width: 1120px; margin: 0 auto; padding: 2rem 1rem 2.5rem; font-size: .75rem; letter-spacing: .15rem; text-transform: uppercase; color: var(--faint); }
 
 @media (max-width: 640px) {
-  .banner-nav { justify-content: flex-start; gap: 0 .9rem; }
-  .banner-nav a { font-size: .7rem; letter-spacing: .12rem; }
+  .banner-nav { justify-content: space-between; gap: 0 .5rem; }
+  .banner-nav a { font-size: .68rem; letter-spacing: .08rem; }
   .banner-title, .is-post .banner-title { font-size: 1.7rem; letter-spacing: .2rem; }
   .banner-head { padding-top: 1.5rem; padding-bottom: 2rem; }
   .blog-body { padding-top: 2rem; gap: 2.5rem; }

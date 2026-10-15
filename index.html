@@ -22,7 +22,7 @@ layout: null
       <div class="home-stem" aria-hidden="true"></div>
       <nav class="home-nav" aria-label="Site">
         {% for p in panels %}
-          {% if p.anchor == 'contact' %}<a href="{{ '/blog/' | relative_url }}">Blog</a>{% endif %}
+          {% if p.anchor == 'contact' %}<a href="{{ '/qc/' | relative_url }}">QC</a>{% endif %}
           <a href="#{{ p.anchor }}">{{ p.title }}</a>
         {% endfor %}
       </nav>

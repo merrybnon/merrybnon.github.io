@@ -8,13 +8,14 @@
   <a class="skip" href="#main">Skip to content</a>
   <div class="banner">
     <nav class="banner-nav" aria-label="Site">
+      <a href="{{ '/' | relative_url }}">Home</a>
       <a href="{{ '/#about' | relative_url }}">About Me</a>
       <a href="{{ '/#research' | relative_url }}">Research</a>
-      <a href="{{ '/blog/' | relative_url }}" aria-current="page">Blog</a>
+      <a href="{{ '/qc/' | relative_url }}" aria-current="page">QC</a>
       <a href="{{ '/#contact' | relative_url }}">Contact</a>
     </nav>
     <header class="banner-head">
-      <a class="banner-title" href="{{ '/blog/' | relative_url }}">{{ site.blog_title }}</a>
+      <a class="banner-title" href="{{ '/qc/' | relative_url }}">{{ site.blog_title }}</a>
       <p class="banner-sub">{{ site.blog_subtitle }}</p>
     </header>
   </div>

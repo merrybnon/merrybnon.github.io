@@ -1,6 +1,6 @@
 <aside class="blog-side" aria-label="Blog navigation">
   <section>
-    <form action="{{ '/blog/search/' | relative_url }}" method="get" role="search">
+    <form action="{{ '/qc/search/' | relative_url }}" method="get" role="search">
       <label class="side-head" for="side-q">Search</label>
       <input id="side-q" name="q" type="search" placeholder="Search posts">
     </form>
@@ -12,7 +12,7 @@
     <ul class="side-list">
       {% assign cats = site.categories | sort %}
       {% for c in cats %}
-      <li><a href="{{ '/blog/categories/' | relative_url }}#{{ c[0] | slugify }}">{{ c[0] | capitalize }}</a> <span class="count">({{ c[1].size }})</span></li>
+      <li><a href="{{ '/qc/categories/' | relative_url }}#{{ c[0] | slugify }}">{{ c[0] | capitalize }}</a> <span class="count">({{ c[1].size }})</span></li>
       {% endfor %}
     </ul>
   </section>
@@ -27,7 +27,7 @@
       {% assign tags = site.tags | sort %}
       {% for t in tags %}
       {% assign w = t[1].size | times: 100 | divided_by: max %}
-      <a href="{{ '/blog/tags/' | relative_url }}#{{ t[0] | slugify }}" style="--w:{{ w }}">{{ t[0] }}</a>
+      <a href="{{ '/qc/tags/' | relative_url }}#{{ t[0] | slugify }}" style="--w:{{ w }}">{{ t[0] }}</a>
       {% endfor %}
     </p>
   </section>
