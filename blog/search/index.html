@@ -1,0 +1,38 @@
+---
+layout: blog
+title: Search
+blog: true
+---
+<h1 class="index-title">Search</h1>
+<form class="search-page-form" action="" method="get" role="search">
+  <label for="search-q" class="visually-hidden">Search posts</label>
+  <input id="search-q" name="q" type="search" placeholder="Search posts">
+</form>
+<p class="search-status" id="search-status" aria-live="polite"></p>
+<ul class="search-results" id="search-results"></ul>
+
+<script>
+(function () {
+  var q = new URLSearchParams(location.search).get("q") || "";
+  var input = document.getElementById("search-q");
+  var status = document.getElementById("search-status");
+  var list = document.getElementById("search-results");
+  input.value = q;
+  if (!q.trim()) { status.textContent = "Type a word or phrase to search titles, tags and post text."; return; }
+  status.textContent = "Searching…";
+  fetch("{{ '/search.json' | relative_url }}").then(function (r) { return r.json(); }).then(function (posts) {
+    var terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+    var hits = posts.filter(function (p) {
+      var hay = (p.title + " " + p.tags.join(" ") + " " + p.categories.join(" ") + " " + p.text).toLowerCase();
+      return terms.every(function (t) { return hay.indexOf(t) !== -1; });
+    });
+    status.textContent = hits.length ? hits.length + (hits.length === 1 ? " post" : " posts") + " matching “" + q + "”" : "No posts match “" + q + "”. Try a shorter word, or browse by tag.";
+    hits.forEach(function (p) {
+      var li = document.createElement("li");
+      var a = document.createElement("a"); a.href = p.url; a.textContent = p.title;
+      var d = document.createElement("time"); d.textContent = " " + p.date;
+      li.appendChild(a); li.appendChild(d); list.appendChild(li);
+    });
+  }).catch(function () { status.textContent = "Search couldn't load. Refresh the page to try again."; });
+})();
+</script>

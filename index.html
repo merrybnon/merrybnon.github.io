@@ -1,0 +1,63 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+</head>
+<body class="home">
+  {% comment %} The CV link only shows once the file in site.cv exists in the repo. {% endcomment %}
+  {% assign cv_file = site.static_files | where: "path", site.cv | first %}
+  {% assign panels = site.panels | sort: "path" %}
+
+  <div class="home-wrap">
+    <header class="home-header" id="top">
+      <div class="home-card">
+        <h1 class="home-name">{{ site.author }}</h1>
+        <img class="home-photo" src="{{ site.avatar | relative_url }}" alt="Photo of {{ site.author }}" width="280" height="280">
+        <p class="home-tagline">{% for line in site.tagline %}{{ line }}{% unless forloop.last %}<br>{% endunless %}{% endfor %}</p>
+        {% if cv_file %}<a class="home-cv" href="{{ site.cv | relative_url }}" target="_blank" rel="noopener">Curriculum Vitae</a>{% endif %}
+      </div>
+      <div class="home-stem" aria-hidden="true"></div>
+      <nav class="home-nav" aria-label="Site">
+        {% for p in panels %}
+          {% if p.anchor == 'contact' %}<a href="{{ '/blog/' | relative_url }}">Blog</a>{% endif %}
+          <a href="#{{ p.anchor }}">{{ p.title }}</a>
+        {% endfor %}
+      </nav>
+    </header>
+
+    {% for p in panels %}
+    <article class="panel" id="{{ p.anchor }}" aria-labelledby="{{ p.anchor }}-title">
+      <a class="panel-close" href="#top" aria-label="Close {{ p.title }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 5l14 14M19 5L5 19"/></svg></a>
+      <h2 class="panel-title" id="{{ p.anchor }}-title">{{ p.title }}</h2>
+      {% if p.image %}<img class="panel-image" src="{{ p.image | relative_url }}" alt="">{% endif %}
+      <div class="panel-body">{{ p.content }}</div>
+
+      {% if p.show_projects and site.data.projects.size > 0 %}
+      <h3 class="panel-subhead">Projects</h3>
+      <ul class="projects">
+        {% for proj in site.data.projects %}
+        <li class="project{% if proj.image %} has-image{% endif %}">
+          {% if proj.image %}<img class="project-image" src="{{ proj.image | relative_url }}" alt="" loading="lazy">{% endif %}
+          <div class="project-text">
+            <h4>{{ proj.title }}</h4>
+            {% if proj.description %}<p>{{ proj.description }}</p>{% endif %}
+            {% if proj.links.size > 0 %}
+            <p class="project-links">{% for l in proj.links %}<a class="pill" href="{{ l.url }}">{{ l.label }}</a>{% endfor %}</p>
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </article>
+    {% endfor %}
+
+    <footer class="home-footer">&copy; {{ site.author }}</footer>
+  </div>
+
+  <script src="{{ '/assets/js/site.js' | relative_url }}"></script>
+</body>
+</html>

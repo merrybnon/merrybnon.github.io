@@ -1,31 +1,41 @@
 # ---------------------------------------------------------------
-# Site settings — edit these first
+# About you
 # ---------------------------------------------------------------
-title: What I think about while walking
 author: Hudson Lazzara
-tagline: Physics PhD student, University of Oregon
-description: Research, and also sometimes, not research
+title: Quiet Conversation             # blog name in browser tabs and the RSS feed
+tagline:                              # lines under your photo on the homepage
+  - PhD Student
+  - Department of Physics, University of Oregon
 email: hlazzara@uoregon.edu
 github_username: merrybnon
-cv: /assets/cv.pdf                   # drop a PDF here, or delete this line
-avatar: /assets/img/avatar.jpg
-
-url: "https://merrybnon.github.io"   # TODO if you use a different repo name
-baseurl: ""                          # "" for a <username>.github.io repo; "/repo-name" otherwise
+avatar: /assets/img/avatar.jpg        # square photo works best
+cv: /assets/cv.pdf                    # the CV link appears only once this file exists
 
 # ---------------------------------------------------------------
-# Comments (giscus — stored as GitHub Discussions on this repo)
+# Blog
+# ---------------------------------------------------------------
+blog_title: Quiet Conversation         # the big name on the blog banner
+blog_subtitle: aka The Dao That Can Be Named
+description: Research, and also sometimes, not research
+paginate: 8                           # posts per page on the blog home
+paginate_path: /blog/page:num/
+
+url: "https://merrybnon.github.io"
+baseurl: ""
+
+# ---------------------------------------------------------------
+# Comments (giscus: stored as GitHub Discussions on this repo)
 # Fill these in from https://giscus.app, then set enabled: true
 # ---------------------------------------------------------------
 giscus:
   enabled: false
   repo: merrybnon/merrybnon.github.io
-  repo_id: ""        # from giscus.app
+  repo_id: ""
   category: Comments
-  category_id: ""    # from giscus.app
+  category_id: ""
 
 # ---------------------------------------------------------------
-# Build — you shouldn't need to touch these
+# Build settings (you shouldn't need to touch these)
 # ---------------------------------------------------------------
 markdown: kramdown
 kramdown:
@@ -36,9 +46,13 @@ permalink: /:year/:month/:day/:title/
 excerpt_separator: "<!--more-->"
 plugins:
   - jekyll-feed
+  - jekyll-paginate
+feed:
+  path: feed.xml
+collections:
+  panels:
+    output: false
 exclude: [README.md, Gemfile, Gemfile.lock, vendor]
 defaults:
   - scope: { path: "", type: posts }
     values: { layout: post, comments: true }
-  - scope: { path: "" }
-    values: { layout: page }

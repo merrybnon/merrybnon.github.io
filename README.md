@@ -1,84 +1,72 @@
-# Personal site + blog (Jekyll, GitHub Pages)
+# merrybnon.github.io
 
-A sidebar homepage (About / Research / Contact) plus a blog with categories,
-tags, KaTeX math, RSS, and GitHub-backed comments. No custom plugins, so
-GitHub Pages builds it directly.
+Homepage in the style of HTML5 UP's Dimension, plus the blog *Quiet Conversation*.
+GitHub Pages builds it automatically every time you push.
 
-## 1. Put it online
+## Where things live
 
-1. Create a public repo named **`merrybnon.github.io`** on GitHub.
-2. Copy these files into it and push:
-   ```bash
-   git init && git add . && git commit -m "Initial site"
-   git branch -M main
-   git remote add origin git@github.com:merrybnon/merrybnon.github.io.git
-   git push -u origin main
-   ```
-3. Repo → Settings → Pages → Source: *Deploy from a branch*, branch `main`, folder `/ (root)`.
-   The site appears at https://merrybnon.github.io within a minute or two.
+| To change…                         | Edit                                   |
+|------------------------------------|----------------------------------------|
+| Name, title lines, email, blog name | `_config.yml`                          |
+| Photo on the homepage              | `assets/img/avatar.jpg` (square works best) |
+| About Me / Research / Contact text | `_panels/1-about.md`, `2-research.md`, `3-contact.md` |
+| Research projects                  | `_data/projects.yml`                   |
+| Colors                             | top of `assets/css/main.css`           |
 
-(Different repo name? Set `baseurl: "/repo-name"` in `_config.yml`.)
+**CV:** put the file at `assets/cv.pdf`. The "Curriculum Vitae" link appears on the
+homepage automatically; until then there's no link.
 
-## 2. Make it yours
+**Project pictures:** put the image in `assets/img/`, then set `image:` for that
+project in `_data/projects.yml`, e.g. `image: /assets/img/vae-landscape.png`.
+A project without an image just shows its text.
 
-- `_config.yml`: name, tagline, email, CV path.
-- `index.md`: the About / Research / Contact text.
-- Photo: add `assets/img/me.jpg` and set `avatar: /assets/img/me.jpg`.
-- CV: add `assets/cv.pdf`, or delete the `cv:` line to hide the link.
+**Panel images:** each panel file has a commented-out `image:` line. Uncomment it and
+give a path to show a picture at the top of that panel.
 
-## 3. Write a post
+## Write a post
 
 Create `_posts/YYYY-MM-DD-some-title.md`:
 
 ```markdown
 ---
 title: "Some title"
-categories: [notes]          # broad buckets, like Tao's "expository", "math.CA"
-tags: [Hilbert transform, heavy tails]
+categories: [notes]                      # one broad bucket: notes, expository, reading…
+tags: [heavy tails, Hilbert transform]  # specific topics, as many as you like
 ---
 
-First paragraph (shown on the blog index).
+First paragraph. This is what the blog home shows as the preview.
 
 <!--more-->
 
 The rest of the post.
 ```
 
-Categories and tags need no registration; the sidebar, `/tags/` and
-`/categories/` pages update automatically. Set `comments: false` in a post's
-front matter to turn comments off for it.
+If you leave out `<!--more-->`, the preview is the first paragraph.
+Categories, tags, and the archive in the sidebar update by themselves.
 
 ### Math
 
-Write **all** math with `$$ ... $$`:
+Write all math with `$$ ... $$`. Inside a sentence it renders inline; on its own
+line (blank lines around it) it renders as a displayed equation.
+Single `$` doesn't work, because Markdown mangles it before the math renderer sees it.
+Shortcuts: `\H` → $\mathcal{H}$, `\E`, `\R`, `\d` (edit in `_includes/math.html`).
 
-- `$$ ... $$` inside a sentence renders inline.
-- `$$ ... $$` alone in its own paragraph (blank lines around it) renders as display math.
+## Comments
 
-Why not single `$`? Markdown processes the text first, so `$f[x](y)$` turns
-into a link, `\!` loses its backslash, and `_` can become italics. The `$$`
-form is protected by kramdown. `aligned`, `cases`, etc. all work inside it.
+Off until you set up giscus (readers comment with their GitHub account):
 
-Shorthand macros (edit in `_includes/math.html`): `\H` → $\mathcal{H}$,
-`\E`, `\R`, `\d` (upright d for integrals).
+1. Repo → Settings → General → Features → tick **Discussions**. Make a discussion
+   category named `Comments`, type *Announcement*.
+2. Install https://github.com/apps/giscus on this repo.
+3. On https://giscus.app enter `merrybnon/merrybnon.github.io`, choose
+   *pathname* mapping and the `Comments` category; copy `data-repo-id` and
+   `data-category-id`.
+4. Paste them under `giscus:` in `_config.yml` and set `enabled: true`.
 
-## 4. Turn on comments (giscus)
-
-Comments are stored as GitHub Discussions in your repo; readers sign in with GitHub.
-
-1. Repo → Settings → General → Features → tick **Discussions**. Create a
-   discussion category called `Comments` (type: *Announcement*, so only
-   giscus can open threads).
-2. Install the giscus app: https://github.com/apps/giscus → select this repo.
-3. Go to https://giscus.app, enter `merrybnon/merrybnon.github.io`, choose
-   *Discussion title contains page pathname* and the `Comments` category.
-   Copy the `data-repo-id` and `data-category-id` it shows.
-4. Paste them into `_config.yml` under `giscus:` and set `enabled: true`.
-
-## Preview locally (optional)
+## Preview on your own computer (optional)
 
 ```bash
-sudo apt install ruby-full build-essential   # WSL/Ubuntu
+sudo apt install ruby-full build-essential
 gem install bundler && bundle install
-bundle exec jekyll serve                      # http://localhost:4000
+bundle exec jekyll serve      # then open http://localhost:4000
 ```

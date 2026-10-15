@@ -1,0 +1,15 @@
+{% assign p = include.post %}
+<article class="preview">
+  <p class="preview-date"><time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%-d %B %Y" }}</time></p>
+  <h2 class="preview-title"><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h2>
+  {% if p.categories.size > 0 %}
+  <p class="preview-meta">Filed under {% for c in p.categories %}<a href="{{ '/blog/categories/' | relative_url }}#{{ c | slugify }}">{{ c | capitalize }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}</p>
+  {% endif %}
+  <div class="preview-excerpt prose">
+    {% if p.content contains site.excerpt_separator %}{{ p.excerpt }}{% else %}{{ p.content | split: "</p>" | first }}</p>{% endif %}
+  </div>
+  <div class="preview-foot">
+    {% for t in p.tags %}<a class="chip" href="{{ '/blog/tags/' | relative_url }}#{{ t | slugify }}">{{ t }}</a>{% endfor %}
+    <a class="more" href="{{ p.url | relative_url }}">Continue reading</a>
+  </div>
+</article>

@@ -1,0 +1,17 @@
+# Research projects, shown in the Research panel in this order.
+# image: put a picture in assets/img/ and give its path; leave blank for none.
+# links: as many buttons as you like (or none).
+
+- title: VAE landscape diversity optimization
+  description: Using a variational autoencoder to optimize landscapes for genetic diversity.
+  image:      # e.g. /assets/img/vae-landscape.png
+  links:
+    - label: Eden Model
+      url: https://github.com/merrybnon/hotspotLandscapes
+    - label: Transition Matrix
+      url: https://github.com/merrybnon/tmatrixoptimization
+
+- title: Level-N Log-Stable
+  description: Generalizing log-stable distributions through repeated exponentiation.
+  image:
+  links: []

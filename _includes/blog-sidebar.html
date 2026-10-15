@@ -1,33 +1,69 @@
-<div class="blog-rail">
+<aside class="blog-side" aria-label="Blog navigation">
   <section>
-    <h2>Categories</h2>
-    <ul class="cat-list">
+    <form action="{{ '/blog/search/' | relative_url }}" method="get" role="search">
+      <label class="side-head" for="side-q">Search</label>
+      <input id="side-q" name="q" type="search" placeholder="Search posts">
+    </form>
+  </section>
+
+  {% if site.categories.size > 0 %}
+  <section>
+    <h2 class="side-head">Categories</h2>
+    <ul class="side-list">
       {% assign cats = site.categories | sort %}
       {% for c in cats %}
-        <li><a href="{{ '/categories/' | relative_url }}#{{ c[0] | slugify }}">{{ c[0] }}</a> <span class="count">{{ c[1].size }}</span></li>
+      <li><a href="{{ '/blog/categories/' | relative_url }}#{{ c[0] | slugify }}">{{ c[0] | capitalize }}</a> <span class="count">({{ c[1].size }})</span></li>
       {% endfor %}
     </ul>
   </section>
+  {% endif %}
 
+  {% if site.tags.size > 0 %}
   <section>
-    <h2>Tags</h2>
+    <h2 class="side-head">Tags</h2>
     {% assign max = 1 %}
     {% for t in site.tags %}{% if t[1].size > max %}{% assign max = t[1].size %}{% endif %}{% endfor %}
     <p class="tag-cloud">
       {% assign tags = site.tags | sort %}
       {% for t in tags %}
-        {% assign w = t[1].size | times: 100 | divided_by: max %}
-        <a href="{{ '/tags/' | relative_url }}#{{ t[0] | slugify }}" style="--w:{{ w }}">{{ t[0] }}</a>
+      {% assign w = t[1].size | times: 100 | divided_by: max %}
+      <a href="{{ '/blog/tags/' | relative_url }}#{{ t[0] | slugify }}" style="--w:{{ w }}">{{ t[0] }}</a>
       {% endfor %}
     </p>
   </section>
+  {% endif %}
 
+  {% if site.posts.size > 0 %}
   <section>
-    <h2>Recent posts</h2>
-    <ul class="recent">
-      {% for p in site.posts limit:5 %}
-        <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+    <h2 class="side-head">Blog archive</h2>
+    <ul class="archive">
+      {% assign years = site.posts | group_by_exp: "p", "p.date | date: '%Y'" %}
+      {% for y in years %}
+      <li>
+        <details{% if forloop.first %} open{% endif %}>
+          <summary><span>{{ y.name }}</span> <span class="count">({{ y.items.size }})</span></summary>
+          <ul>
+            {% assign months = y.items | group_by_exp: "p", "p.date | date: '%B'" %}
+            {% for m in months %}
+            <li>
+              <details{% if forloop.first and forloop.parentloop.first %} open{% endif %}>
+                <summary><span>{{ m.name }}</span> <span class="count">({{ m.items.size }})</span></summary>
+                <ul class="archive-posts">
+                  {% for p in m.items %}<li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>{% endfor %}
+                </ul>
+              </details>
+            </li>
+            {% endfor %}
+          </ul>
+        </details>
+      </li>
       {% endfor %}
     </ul>
   </section>
-</div>
+  {% endif %}
+
+  <section>
+    <h2 class="side-head">Follow</h2>
+    <p class="follow"><a href="{{ '/feed.xml' | relative_url }}">RSS feed</a><br><span>New posts show up in your feed reader.</span></p>
+  </section>
+</aside>

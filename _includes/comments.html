@@ -1,7 +1,7 @@
 {% if site.giscus.enabled and page.comments != false %}
-<section class="comments" aria-label="Comments">
-  <h2>Comments</h2>
-  <p class="comment-note">Comments use GitHub accounts. LaTeX works with <code class="no-math">$...$</code>.</p>
+<section class="comments" id="comments" aria-label="Comments">
+  <h2 class="section-head">Comments</h2>
+  <p class="comments-note">Sign in with GitHub to comment. Markdown and LaTeX work in comments.</p>
   <script src="https://giscus.app/client.js"
     data-repo="{{ site.giscus.repo }}"
     data-repo-id="{{ site.giscus.repo_id }}"
@@ -12,7 +12,7 @@
     data-reactions-enabled="1"
     data-emit-metadata="0"
     data-input-position="top"
-    data-theme="preferred_color_scheme"
+    data-theme="transparent_dark"
     data-lang="en"
     data-loading="lazy"
     crossorigin="anonymous"

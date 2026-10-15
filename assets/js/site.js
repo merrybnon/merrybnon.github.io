@@ -1,16 +1,33 @@
+// Homepage panels open via the URL hash (#about, #research, #contact) using CSS :target.
+// This adds: Esc to close, click outside a panel to close, and focus moves into the open panel.
 (function () {
-  var btn = document.querySelector(".menu-toggle");
-  var body = document.getElementById("sidebar-body");
-  if (!btn || !body) return;
-  btn.addEventListener("click", function () {
-    var open = btn.getAttribute("aria-expanded") === "true";
-    btn.setAttribute("aria-expanded", String(!open));
-    body.classList.toggle("open", !open);
-  });
-  body.addEventListener("click", function (e) {
-    if (e.target.tagName === "A" && window.matchMedia("(max-width: 900px)").matches) {
-      btn.setAttribute("aria-expanded", "false");
-      body.classList.remove("open");
+  if (!document.body.classList.contains("home")) return;
+
+  function close() {
+    if (location.hash && location.hash !== "#top") {
+      var was = location.hash.slice(1);
+      location.hash = "top";
+      var nav = document.querySelector('.home-nav a[href="#' + was + '"]');
+      if (nav) nav.focus({ preventScroll: true });
     }
+  }
+
+  function sync() {
+    var open = document.querySelector(".panel:target");
+    document.body.classList.toggle("panel-open", !!open);
+    if (open) {
+      window.scrollTo(0, 0);
+      var title = open.querySelector(".panel-title");
+      if (title) { title.setAttribute("tabindex", "-1"); title.focus({ preventScroll: true }); }
+    }
+  }
+
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+  document.addEventListener("click", function (e) {
+    if (!document.body.classList.contains("panel-open")) return;
+    if (e.target.closest(".panel")) return;
+    close();
   });
+  window.addEventListener("hashchange", sync);
+  sync();
 })();
