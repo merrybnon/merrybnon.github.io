@@ -100,7 +100,7 @@ body.home.panel-open .home-footer { display: none; }
   text-transform: uppercase; padding-bottom: .5rem; border-bottom: 1px solid var(--brown); line-height: 1.3;
 }
 .panel-title:focus { outline: none; }
-.panel-image { display: block; width: 100%; max-height: 18rem; object-fit: cover; border-radius: 4px; margin: 0 0 1.75rem; }
+.panel-image { display: block; width: 100%; height: auto; border-radius: 4px; margin: 0 0 1.75rem; }
 .panel-body p { margin: 0 0 1.1rem; }
 .panel-body ul { margin: 0 0 1.1rem; padding-left: 1.2rem; }
 .panel-body strong { font-weight: 600; }

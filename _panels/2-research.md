@@ -5,4 +5,4 @@ show_projects: true   # lists the projects from _data/projects.yml below this te
 # image: /assets/img/research-banner.jpg   # optional
 ---
 
-I use machine learning to understand the relationships between landscapes and genetic diversity. Other interests include spatial population genetics more generally, heavy-tailed distributions, and the loglognormal.
+My main project is using machine learning to predict how landscape structure will affect the genetic diversity of a population living on that landscape. In my free time, I'm also developing a side project on generalizing log-stable distributions.

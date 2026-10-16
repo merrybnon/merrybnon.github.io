@@ -2,7 +2,7 @@
 # image: put a picture in assets/img/ and give its path; leave blank for none.
 # links: as many buttons as you like (or none).
 
-- title: VAE landscape diversity optimization
+- title: VAE Landscape Diversity Optimization
   description: Using a variational autoencoder to optimize landscapes for genetic diversity.
   image:      # e.g. /assets/img/vae-landscape.png
   links:
